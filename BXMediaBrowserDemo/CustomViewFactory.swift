@@ -83,10 +83,10 @@ final class CustomViewFactory : ViewFactory
 
 	/// Returns the type of ObjectViewController subclass to be used for the specified Container
 	
-	override public func objectViewControllerType(for container:Container?) -> ObjectViewController.Type
-	{
-		super.objectViewControllerType(for:container)
-	}
+//	override public func objectViewControllerType(for container:Container?) -> ObjectViewController.Type
+//	{
+//		super.objectViewControllerType(for:container)
+//	}
 
 }
 

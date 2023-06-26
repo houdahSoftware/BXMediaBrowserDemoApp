@@ -43,7 +43,7 @@ class VideoLibrary : GenericLibrary
 	{
 		super.init(identifier:identifier)
 		
-		let photosSource = PhotosSource()
+		let photosSource = PhotosSource(allowedMediaTypes: [.image])
 		librariesSection?.addSource(photosSource)
 		
 		let folderSource = VideoFolderSource()

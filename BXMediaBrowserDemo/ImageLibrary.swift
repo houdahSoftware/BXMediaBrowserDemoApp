@@ -44,16 +44,16 @@ class ImageLibrary : GenericLibrary
 	{
 		super.init(identifier:identifier)
 
-		let photosSource = PhotosSource()
+		let photosSource = PhotosSource(allowedMediaTypes: [.image])
 		librariesSection?.addSource(photosSource)
 		
-		if let data = BXKeychain.data(forKey:"api_unsplash_com_accessKey")
-		{
-			let key = String(decoding:data, as:UTF8.self)
-			UnsplashConfig.shared.accessKey = key
-			let unsplashSource = UnsplashSource()
-			internetSection?.addSource(unsplashSource)
-		}
+//		if let data = BXKeychain.data(forKey:"api_unsplash_com_accessKey")
+//		{
+//			let key = String(decoding:data, as:UTF8.self)
+//			UnsplashConfig.shared.accessKey = key
+//			let unsplashSource = UnsplashSource()
+//			internetSection?.addSource(unsplashSource)
+//		}
  
  		let folderSource = ImageFolderSource()
 		self.folderSource = folderSource
