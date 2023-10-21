@@ -23,30 +23,39 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 
-import AppKit
 import BXMediaBrowser
+import BXSwiftUtils
+import Foundation
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
-class AudioLibrary : GenericLibrary
+class VideoLibrary : GenericLibrary
 {
 	/// Shared singleton instance
 	
-	static let shared = AudioLibrary(identifier:"AudioLibrary")
+	static let shared = VideoLibrary(identifier:"VideoLibrary")
 	
 	
-	/// Creates the basic structure of the AudioLibrary
+	/// Creates the basic structure of the VideoLibrary
 	
 	override init(identifier:String)
 	{
 		super.init(identifier:identifier)
-
-		let musicSource = MusicSource()
-		librariesSection?.addSource(musicSource)
-	
-		let folderSource = AudioFolderSource()
+		
+		let photosSource = PhotosSource(allowedMediaTypes:[.video])
+		librariesSection?.addSource(photosSource)
+		
+ 		if let data = BXKeychain.data(forKey:"api_pexels_com_accessKey")
+		{
+			let key = String(decoding:data, as:UTF8.self)
+			Pexels.shared.accessKey = key
+			let pexelsSource = BXMediaBrowser.PexelsVideoSource()
+			internetSection?.addSource(pexelsSource)
+		}
+ 
+		let folderSource = VideoFolderSource()
 		self.folderSource = folderSource
 		foldersSection?.addSource(folderSource)
 
@@ -54,13 +63,13 @@ class AudioLibrary : GenericLibrary
 	}
 	
 	
-	/// Creates a AudioFolderContainer for the specified folder URL
+	/// Creates a VideoFolderContainer for the specified folder URL
 	
     override func createContainer(for url:URL) -> FolderContainer
     {
 		let filter = self.folderSource?.filter as? FolderFilter ?? FolderFilter()
 		
-		return AudioFolderContainer(url:url, filter:filter)
+		return VideoFolderContainer(url:url, filter:filter)
 		{
 			[weak self] in self?.removeTopLevelFolder($0)
 		}

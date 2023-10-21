@@ -54,15 +54,41 @@ struct BrowserView : View
 		}
 	}
 	
+	private var selectedUIState:UIState
+	{
+		switch mediaType
+		{
+			case 1 : return videoUIState
+			case 2 : return audioUIState
+			default: return imageUIState
+		}
+	}
+
+	let imageUIState = UIState()
+	let videoUIState = UIState()
+	let audioUIState = UIState()
+	
 	// Build View
 	
     var body: some View
     {
+		#if os(macOS)
+		
 		HSplitView
 		{
 			self.sidebar
 			self.objectBrowser.layoutPriority(1)
 		}
+		
+		#else
+		
+		NavigationView
+		{
+			self.sidebar
+			self.objectBrowser //.layoutPriority(1)
+		}
+
+		#endif
     }
     
     // Sidebar View
@@ -104,23 +130,25 @@ struct BrowserView : View
 	var objectBrowser: some View
     {
 		let library = self.selectedLibrary
+		let uiState = self.selectedUIState
 		let container = library.selectedContainer
-		let uiState = UIState()
-		let cellType = viewFactory.objectCellType(for: container, uiState: uiState)
+		let cellType = viewFactory.objectCellType(for:container, uiState:uiState)
 
 		return VStack(spacing:0)
 		{
-			viewFactory.objectsHeaderView(for: container, uiState: uiState)
-
-			Color.primary.opacity(0.15).frame(height:1) // Divider line
-			
-			ObjectCollectionView(container:container, cellType:cellType, uiState: uiState)
+			viewFactory.objectsHeaderView(for:container, uiState:uiState)
 			
 			Color.primary.opacity(0.15).frame(height:1) // Divider line
+			
+			#if os(macOS)
+			ObjectCollectionView(container:container, cellType:cellType, uiState:uiState)
+			#endif
+			
+			Color.primary.opacity(0.15).frame(height:1) // Divider line
 
-			viewFactory.objectsFooterView(for: container, uiState: uiState)
+			viewFactory.objectsFooterView(for:container, uiState:uiState)
 		}
-		.frame(minWidth:240, maxWidth:.infinity)
+		.frame(minWidth:340, maxWidth:.infinity)
     }
 
 }

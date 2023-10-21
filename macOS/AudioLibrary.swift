@@ -23,58 +23,50 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 
-import AppKit
 import BXMediaBrowser
-import BXSwiftUtils
+import Foundation
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
-class ImageLibrary : GenericLibrary
+class AudioLibrary : GenericLibrary
 {
 	/// Shared singleton instance
 	
-	static let shared = ImageLibrary(identifier:"ImageLibrary")
+	static let shared = AudioLibrary(identifier:"AudioLibrary")
 	
 	
-	/// Creates the basic structure of the ImageLibrary
+	/// Creates the basic structure of the AudioLibrary
 	
 	override init(identifier:String)
 	{
 		super.init(identifier:identifier)
 
-		let photosSource = PhotosSource(allowedMediaTypes: [.image])
-		librariesSection?.addSource(photosSource)
+		#if os(macOS)
+		let musicSource = MusicSource()
+		librariesSection?.addSource(musicSource)
+		#endif
 		
-//		if let data = BXKeychain.data(forKey:"api_unsplash_com_accessKey")
-//		{
-//			let key = String(decoding:data, as:UTF8.self)
-//			UnsplashConfig.shared.accessKey = key
-//			let unsplashSource = UnsplashSource()
-//			internetSection?.addSource(unsplashSource)
-//		}
- 
- 		let folderSource = ImageFolderSource()
+		let folderSource = AudioFolderSource()
 		self.folderSource = folderSource
 		foldersSection?.addSource(folderSource)
-		
+
 		self.load(with:self.state)
 	}
 	
-
- 	/// Creates a ImageFolderContainer for the specified folder URL
 	
-   override func createContainer(for url:URL) -> FolderContainer
+	/// Creates a AudioFolderContainer for the specified folder URL
+	
+    override func createContainer(for url:URL) -> FolderContainer
     {
 		let filter = self.folderSource?.filter as? FolderFilter ?? FolderFilter()
 		
-		return ImageFolderContainer(url:url, filter:filter)
+		return AudioFolderContainer(url:url, filter:filter)
 		{
 			[weak self] in self?.removeTopLevelFolder($0)
 		}
     }
-
 }
 
 

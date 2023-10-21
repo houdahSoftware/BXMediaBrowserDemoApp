@@ -24,69 +24,64 @@
 
 
 import BXMediaBrowser
-import SwiftUI
+import BXSwiftUtils
+import Foundation
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
-final class CustomViewFactory : ViewFactory
+class ImageLibrary : GenericLibrary
 {
-	override init()
-	{
-		super.init()
-	}
+	/// Shared singleton instance
 	
-	// Create a custom View and wrap it in a type-erased AnyView
+	static let shared = ImageLibrary(identifier:"ImageLibrary")
 	
-	override public func containerView(for container:Container) -> AnyView
+	
+	/// Creates the basic structure of the ImageLibrary
+	
+	override init(identifier:String)
 	{
-		AnyView(Group
+		super.init(identifier:identifier)
+
+		let photosSource = PhotosSource(allowedMediaTypes:[.image])
+		librariesSection?.addSource(photosSource)
+ 
+		if let data = BXKeychain.data(forKey:"api_unsplash_com_accessKey")
 		{
-//			if container is PhotosContainer
-//			{
-//				ContainerView(with:container).border(Color.red)
-//			}
-//			else
-//			{
-				ViewFactory.defaultContainerView(for:container)
-//			}
-		})
-	}
-
-
-	// Provide custom context menu
-	
-	override public func containerContextMenu(for container:Container) -> AnyView
-	{
-		AnyView(Group
+			let key = String(decoding:data, as:UTF8.self)
+			Unsplash.shared.accessKey = key
+			let unsplashSource = UnsplashSource()
+			internetSection?.addSource(unsplashSource)
+		}
+ 
+ 		if let data = BXKeychain.data(forKey:"api_pexels_com_accessKey")
 		{
-			if container is PhotosContainer
-			{
-				Button("Beep")
-				{
-					NSSound.beep()
-				}
-
-				Button("Bop")
-				{
-					NSSound.beep()
-				}
-			}
-			else
-			{
-				ViewFactory.defaultContainerContextMenu(for:container)
-			}
-		})
+			let key = String(decoding:data, as:UTF8.self)
+			Pexels.shared.accessKey = key
+			let pexelsSource = PexelsPhotoSource()
+			internetSection?.addSource(pexelsSource)
+		}
+ 
+ 		let folderSource = ImageFolderSource()
+		self.folderSource = folderSource
+		foldersSection?.addSource(folderSource)
+		
+		self.load(with:self.state)
 	}
-
-
-	/// Returns the type of ObjectViewController subclass to be used for the specified Container
 	
-//	override public func objectViewControllerType(for container:Container?) -> ObjectViewController.Type
-//	{
-//		super.objectViewControllerType(for:container)
-//	}
+
+ 	/// Creates a ImageFolderContainer for the specified folder URL
+	
+   override func createContainer(for url:URL) -> FolderContainer
+    {
+		let filter = self.folderSource?.filter as? FolderFilter ?? FolderFilter()
+		
+		return ImageFolderContainer(url:url, filter:filter)
+		{
+			[weak self] in self?.removeTopLevelFolder($0)
+		}
+    }
 
 }
 

@@ -23,48 +23,65 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 
-import AppKit
 import BXMediaBrowser
+import SwiftUI
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
-class VideoLibrary : GenericLibrary
+final class CustomViewFactory : ViewFactory
 {
-	/// Shared singleton instance
-	
-	static let shared = VideoLibrary(identifier:"VideoLibrary")
-	
-	
-	/// Creates the basic structure of the VideoLibrary
-	
-	override init(identifier:String)
+	override init()
 	{
-		super.init(identifier:identifier)
-		
-		let photosSource = PhotosSource(allowedMediaTypes: [.image])
-		librariesSection?.addSource(photosSource)
-		
-		let folderSource = VideoFolderSource()
-		self.folderSource = folderSource
-		foldersSection?.addSource(folderSource)
-
-		self.load(with:self.state)
+		super.init()
 	}
 	
+	// Create a custom View and wrap it in a type-erased AnyView
 	
-	/// Creates a VideoFolderContainer for the specified folder URL
+	override public func containerView(for container:Container) -> AnyView
+	{
+		AnyView(
+			Self.defaultContainerView(for:container)
+		)
+	}
+
+	/// Returns the type of ObjectViewController subclass to be used for the specified Container
 	
-    override func createContainer(for url:URL) -> FolderContainer
-    {
-		let filter = self.folderSource?.filter as? FolderFilter ?? FolderFilter()
-		
-		return VideoFolderContainer(url:url, filter:filter)
+	override public func objectCellType(for container:Container?, uiState:UIState) -> ObjectCell.Type
+	{
+		super.objectCellType(for:container, uiState:uiState)
+	}
+
+	// Provide custom context menu
+	
+	override public func containerContextMenu(for container:Container) -> AnyView
+	{
+		AnyView(Group
 		{
-			[weak self] in self?.removeTopLevelFolder($0)
-		}
-    }
+			if container is PhotosContainer
+			{
+				Button("Beep")
+				{
+					#if os(macOS)
+					NSSound.beep()
+					#endif
+				}
+
+				Button("Bop")
+				{
+					#if os(macOS)
+					NSSound.beep()
+					#endif
+				}
+			}
+			else
+			{
+				ViewFactory.defaultContainerContextMenu(for:container)
+			}
+		})
+	}
+
 }
 
 
