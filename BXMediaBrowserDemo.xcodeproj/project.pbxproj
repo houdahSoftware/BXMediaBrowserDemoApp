@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F04C8702AE5B99200DD25F5 /* BXMediaBrowser in Frameworks */ = {isa = PBXBuildFile; productRef = 8F04C86F2AE5B99200DD25F5 /* BXMediaBrowser */; };
+		8FB586682AE41E3700D998DC /* BXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D066B93427AFE62A003BCD51 /* BXSwiftUI */; };
 		D00DF1C527F71F0F00DC1D27 /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = D00DF1C427F71F0F00DC1D27 /* OAuth2 */; };
 		D00EEAD6281FB65A008B2679 /* MediaBrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00EEAD5281FB65A008B2679 /* MediaBrowserApp.swift */; };
 		D00EEADA281FB65C008B2679 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D00EEAD9281FB65C008B2679 /* Assets.xcassets */; };
@@ -14,7 +16,6 @@
 		D00EEAE4281FBA40008B2679 /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = D00EEAE3281FBA40008B2679 /* OAuth2 */; };
 		D00EEAE6281FBA50008B2679 /* BXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D00EEAE5281FBA50008B2679 /* BXSwiftUI */; };
 		D00EEAE8281FBA54008B2679 /* BXSwiftUtils in Frameworks */ = {isa = PBXBuildFile; productRef = D00EEAE7281FBA54008B2679 /* BXSwiftUtils */; };
-		D00EEAEA281FBA62008B2679 /* BXMediaBrowser in Frameworks */ = {isa = PBXBuildFile; productRef = D00EEAE9281FBA62008B2679 /* BXMediaBrowser */; };
 		D066B92227AFE134003BCD51 /* MediaBrowserAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D066B92127AFE134003BCD51 /* MediaBrowserAppDelegate.swift */; };
 		D066B92427AFE134003BCD51 /* MediaBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D066B92327AFE134003BCD51 /* MediaBrowserViewController.swift */; };
 		D066B92627AFE136003BCD51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D066B92527AFE136003BCD51 /* Assets.xcassets */; };
@@ -32,7 +33,7 @@
 		D0AA8FD228204BB30009A890 /* VideoLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02F46B9277880AD00C959A4 /* VideoLibrary.swift */; };
 		D0AA8FD328204BB80009A890 /* AudioLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02F46BB277880BA00C959A4 /* AudioLibrary.swift */; };
 		D0AA8FD428204D910009A890 /* CustomViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0853A432779E34200987C23 /* CustomViewFactory.swift */; };
-		D0B2C71227C6A00C00278209 /* BXSwiftUtils in Frameworks */ = {isa = PBXBuildFile; productRef = D0B2C71127C6A00C00278209 /* BXSwiftUtils */; };
+		D0B2C71227C6A00C00278209 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,7 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D00EEAEA281FBA62008B2679 /* BXMediaBrowser in Frameworks */,
 				D00EEAE8281FBA54008B2679 /* BXSwiftUtils in Frameworks */,
 				D00EEAE6281FBA50008B2679 /* BXSwiftUI in Frameworks */,
 				D00EEAE4281FBA40008B2679 /* OAuth2 in Frameworks */,
@@ -79,9 +79,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F04C8702AE5B99200DD25F5 /* BXMediaBrowser in Frameworks */,
+				8FB586682AE41E3700D998DC /* BXSwiftUI in Frameworks */,
 				D00DF1C527F71F0F00DC1D27 /* OAuth2 in Frameworks */,
-				D0B2C71227C6A00C00278209 /* BXSwiftUtils in Frameworks */,
-				D066B93527AFE62A003BCD51 /* BXMediaBrowser in Frameworks */,
+				D0B2C71227C6A00C00278209 /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +177,6 @@
 				D00EEAE3281FBA40008B2679 /* OAuth2 */,
 				D00EEAE5281FBA50008B2679 /* BXSwiftUI */,
 				D00EEAE7281FBA54008B2679 /* BXSwiftUtils */,
-				D00EEAE9281FBA62008B2679 /* BXMediaBrowser */,
 			);
 			productName = com.boinx.BXMediaBrowser.demo.iOS;
 			productReference = D00EEAD3281FB659008B2679 /* BXMediaBrowserDemoIOS.app */;
@@ -196,9 +196,9 @@
 			);
 			name = BXMediaBrowserDemoMac;
 			packageProductDependencies = (
-				D066B93427AFE62A003BCD51 /* BXMediaBrowser */,
-				D0B2C71127C6A00C00278209 /* BXSwiftUtils */,
+				D066B93427AFE62A003BCD51 /* BXSwiftUI */,
 				D00DF1C427F71F0F00DC1D27 /* OAuth2 */,
+				8F04C86F2AE5B99200DD25F5 /* BXMediaBrowser */,
 			);
 			productName = BXMediaBrowserDemo;
 			productReference = D066B91F27AFE134003BCD51 /* BXMediaBrowserDemoMac.app */;
@@ -234,10 +234,8 @@
 			);
 			mainGroup = D0A1B83C275B882300BEA8E8;
 			packageReferences = (
-				D05F09E02774761D0037C3E4 /* XCRemoteSwiftPackageReference "BXMediaBrowser" */,
-				D09F1B1D27A5A23500097FA9 /* XCRemoteSwiftPackageReference "BXSwiftUI" */,
-				D0B2C71027C6A00C00278209 /* XCRemoteSwiftPackageReference "BXSwiftUtils" */,
 				D00DF1C327F71F0F00DC1D27 /* XCRemoteSwiftPackageReference "OAuth2" */,
+				8F04C86E2AE5B99200DD25F5 /* XCRemoteSwiftPackageReference "BXMediaBrowser" */,
 			);
 			productRefGroup = D0A1B846275B882300BEA8E8 /* Products */;
 			projectDirPath = "";
@@ -588,6 +586,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8F04C86E2AE5B99200DD25F5 /* XCRemoteSwiftPackageReference "BXMediaBrowser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:houdahSoftware/BXMediaBrowser.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		D00DF1C327F71F0F00DC1D27 /* XCRemoteSwiftPackageReference "OAuth2" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/p2/OAuth2.git";
@@ -596,25 +602,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		D05F09E02774761D0037C3E4 /* XCRemoteSwiftPackageReference "BXMediaBrowser" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:boinx/BXMediaBrowser.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		8F762E852A4977FD004E3EB5 /* XCRemoteSwiftPackageReference "OAuth2" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:peterb180369/OAuth2.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8F04C86F2AE5B99200DD25F5 /* BXMediaBrowser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F04C86E2AE5B99200DD25F5 /* XCRemoteSwiftPackageReference "BXMediaBrowser" */;
+			productName = BXMediaBrowser;
+		};
 		D00DF1C427F71F0F00DC1D27 /* OAuth2 */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D00DF1C327F71F0F00DC1D27 /* XCRemoteSwiftPackageReference "OAuth2" */;
@@ -627,38 +622,15 @@
 		};
 		D00EEAE5281FBA50008B2679 /* BXSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D09F1B1D27A5A23500097FA9 /* XCRemoteSwiftPackageReference "BXSwiftUI" */;
 			productName = BXSwiftUI;
 		};
 		D00EEAE7281FBA54008B2679 /* BXSwiftUtils */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D0B2C71027C6A00C00278209 /* XCRemoteSwiftPackageReference "BXSwiftUtils" */;
 			productName = BXSwiftUtils;
 		};
-		D00EEAE9281FBA62008B2679 /* BXMediaBrowser */ = {
+		D066B93427AFE62A003BCD51 /* BXSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D05F09E02774761D0037C3E4 /* XCRemoteSwiftPackageReference "BXMediaBrowser" */;
-			productName = BXMediaBrowser;
-		};
-		D066B93427AFE62A003BCD51 /* BXMediaBrowser */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F3F32252A482DF600030110 /* XCRemoteSwiftPackageReference "BXSwiftUI" */;
 			productName = BXSwiftUI;
-		};
-		8F762E802A48E7FB004E3EB5 /* BXSwiftUtils */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F762E7F2A48E7FB004E3EB5 /* XCRemoteSwiftPackageReference "BXSwiftUtils" */;
-			productName = BXSwiftUtils;
-		};
-		8F762E832A4977C0004E3EB5 /* BXMediaBrowser */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F762E822A4977C0004E3EB5 /* XCRemoteSwiftPackageReference "BXMediaBrowser" */;
-			productName = BXMediaBrowser;
-		};
-		8F762E862A4977FD004E3EB5 /* OAuth2 */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F762E852A4977FD004E3EB5 /* XCRemoteSwiftPackageReference "OAuth2" */;
-			productName = OAuth2;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
