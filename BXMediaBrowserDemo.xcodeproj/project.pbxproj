@@ -590,7 +590,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:houdahSoftware/BXMediaBrowser.git";
 			requirement = {
-				branch = main;
+				branch = spm;
 				kind = branch;
 			};
 		};
